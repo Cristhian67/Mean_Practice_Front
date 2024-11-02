@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="employeeForm()" (ngSubmit)="addEmployee()" class="p-4">
+                    <div class="form-group">
+                        <input formControlName = 'name' type="text" class="form-control" placeholder="Enter your FullName">
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName = 'position' type="text" class="form-control" placeholder = "Enter your Position">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName = 'office' type="text" class="form-control" placeholder = "Enter your Office">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName = 'salary' type="number" class="form-control" placeholder = "Enter your Salary">
+                    </div>
+                    <button class = "btn btn-primary">
+                        Clean
+                    </button>
+                    <button class = "btn btn-secondary">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(employee of employeeService.employees; track employee.name){
+                <tr (click)="selectEmployee(employee)">
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.position}}</td>
+                    <td>{{employee.office}}</td>
+                    <td>
+                        <button (click)="editEmployee(employee._id)" class = "btn btn-secondary btn-sm">
+                            <i class = "material-icons">edit</i>
+                        </button>
+                        <button (click) = "deleteEmployee(employee._id)" class = "btn btn-danger btn-sm">
+                            <i class = "material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+}
+            </tbody>
+        </table>
+    </div>
+</div>
